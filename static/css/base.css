@@ -47,19 +47,19 @@ body {
 }
 
 .nav__logo::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   height: 0.3vh;
   width: 80%;
-  border-radius: 0.5vh; 
+  border-radius: 0.5vh;
   transform: translateX(-50%) scaleX(0);
   background: rgb(var(--primary-600));
   transition: transform 100ms ease;
 }
 
-.nav__logo:hover::before{
+.nav__logo:hover::before {
   transform: translateX(-50%) scaleX(1);
 }
 
@@ -124,7 +124,7 @@ body {
   outline: 3px solid rgb(var(--primary-200));
   color: rgb(var(--primary-200));
   font-family: cursive;
-  font-size: 1.5rem;
+  font-size: 2.5vh;
 }
 
 .nav-btn:hover {
@@ -132,4 +132,23 @@ body {
   outline: none;
   padding: 3px;
   color: white;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 45%;
+  height: 50%;
+  background: rgb(var(--dark-600));
+  padding: 1%;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
 }

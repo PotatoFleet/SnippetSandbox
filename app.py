@@ -1,6 +1,6 @@
 # Om Vighneswaraya Namaha
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -34,8 +34,28 @@ def register():
         pass
     return render_template('register.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+
+        user = User.query.filter_by(username=username).first()
+
+        if not user:
+            flash("User with username " + username + " does not exist.")
+            return redirect('login')
+
+        if user.password != password:
+            flash("Password is incorrect, please try again.")
+            return redirect('login')
+
+        request.session['user'] = username
+
+    if 'user' in request.session:
+        flash("You are already logged in.")
+        return redirect('home')
+
     return render_template('login.html')
 
 if __name__ == '__main__':
