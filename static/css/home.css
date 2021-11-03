@@ -1,0 +1,58 @@
+
+.message {
+    position: fixed;
+    bottom: 0.5vh;
+    right: 0.5vw;
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+    padding: 0.75% 0.75%;
+    padding-top: 0.25%;
+    font-family: Roboto, sans-serif;
+    color: white;
+    border-radius: 1vh;
+    background: rgb(var(--primary-200));
+    animation: slide-in-out 7500ms ease forwards;
+}
+
+.message-text {
+    display: flex;
+    align-items: center;
+}
+
+.message-progress {
+    width: 100%;
+    height: 1vh;
+    background: white;
+    transform-origin: left;
+    animation: slide-out 7500ms linear forwards;
+}
+
+@keyframes slide-in-out {
+    0% {
+        transform: translateX(125%);
+    }
+    5% {
+        transform: translateX(-25%);
+    }
+    6% {
+        transform: translateX(-25%);
+    }
+    10% {
+        transform: translateX(0);
+    }
+    95% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(125%);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}

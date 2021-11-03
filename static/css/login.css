@@ -1,29 +1,51 @@
-#login-form {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+#login-form-container {
+  display: flex;
+  flex-direction: column;
 }
 
-#login-form input {
-    aspect-ratio: 10 / 1;
-    padding: 0 5px;
+#login-form {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+#login-form input:not([type="submit"]) {
+  aspect-ratio: 10 / 1;
+  padding: 0 .5vw;
 }
 
 #login-btn {
   cursor: pointer;
   color: white;
+  padding: 1.25vh 0;
   font-size: 1.75vh;
   background: rgb(var(--primary-600));
   border: none;
-  transition: background 200ms linear;
-}
-#login-btn:hover {
-  background: rgb(var(--primary-800));
+  box-shadow: 2px 2px 5px 1px rgb(var(--primary-200), 0.5);
 }
 
 #login-form-heading {
   color: white;
   font-family: Roboto;
   font-size: 3.5vh;
+}
+
+#register-link {
+  cursor: pointer;
+  display: block;
+  color: white;
+  font-family: Roboto, sans-serif;
+  margin: 25px 0;
+}
+
+.messages-container {
+  width: 60%;
+}
+
+.message {
+  color: red;
+  font-family: Roboto, sans-serif;
+  font-size: 1.5vh;
 }

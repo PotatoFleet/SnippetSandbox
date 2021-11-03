@@ -1,0 +1,41 @@
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr 8fr;
+}
+
+.utils-bar {
+    display: grid;
+    place-items: center;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75em;
+}
+
+.sec:not(.website) {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+}
+
+.language-heading {
+    padding: 10px 5px;
+    font-family: Roboto, sans-serif;
+    color: white;
+    background: rgb(var(--primary-200));
+}
+
+.save-btn {
+    cursor: pointer;
+    width: max-content;
+    padding: .75vh 3vh;
+    font-family: Roboto, sans-serif;
+    font-size: 2.5vh;
+    color: white;
+    border-radius: 100vw;
+    background: linear-gradient(to right, red, blue);
+}

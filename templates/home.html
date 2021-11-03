@@ -6,5 +6,9 @@
 {% endblock %}
 
 {% block body %}
-
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <div class="message"><div class="message-text">{{ message }}</div><div class="message-progress"></div></div>
+        {% endfor %}
+    {% endwith %}
 {% endblock %}

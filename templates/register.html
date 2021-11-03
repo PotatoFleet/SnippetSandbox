@@ -6,4 +6,22 @@
 {% endblock %}
 
 {% block body %}
+<div id="register-form-container" class="form">
+    <div class="messages-container">
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <div class="message">{{message}}</div>
+            {% endfor %}
+        {% endwith %}
+    </div>
+    <form action="{{ url_for('register') }}" method="post" id="register-form">
+        <h1 id="register-form-heading">Register Form</h1>
+        <input type="text" name="username" id="username" placeholder="Username" required>
+        <input type="text" name="email" id="email" placeholder="Email Address (optional)">
+        <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+        <input type="submit" id="register-btn" value="Register">
+    </form>
+    <a href="{{ url_for('login') }}" id="login-link">Login here</a>
+</div>
 {% endblock %}

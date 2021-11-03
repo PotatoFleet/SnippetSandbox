@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+*:focus-visible {
+  outline: 0.25vh solid rgb(var(--primary-400));
+}
+
 :root {
   --dark-800: 30, 30, 30;
   --dark-600: 68, 68, 68;
@@ -24,7 +28,6 @@ body {
 
 .nav {
   height: 100vh;
-  border-radius: 0 2% 2% 0;
   background: rgb(var(--dark-600));
   overflow-x: hidden;
   display: grid;
@@ -43,23 +46,26 @@ body {
   color: white;
   font-family: cursive;
   font-size: 3.5vh;
+}
+
+.nav__logo__name {
   position: relative;
 }
 
-.nav__logo::before {
+.nav__logo__name::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   height: 0.3vh;
-  width: 80%;
+  width: 100%;
   border-radius: 0.5vh;
   transform: translateX(-50%) scaleX(0);
-  background: rgb(var(--primary-600));
+  background: white;
   transition: transform 100ms ease;
 }
 
-.nav__logo:hover::before {
+.nav__logo__name:hover::before {
   transform: translateX(-50%) scaleX(1);
 }
 
@@ -70,9 +76,10 @@ body {
   background: rgb(var(--primary-200));
 }
 
-.nav__login {
+.nav__login, .nav__logout {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1em;
   margin-top: 10px;
 }
@@ -87,14 +94,13 @@ body {
   font-weight: bold;
   width: 80%;
   padding: 5%;
-  border: solid 5px;
-  border-image: linear-gradient(to right, red, blue) 1 20%;
-  border-image-slice: 1;
+  border-radius: 1vh;
+  background: linear-gradient(to right, red, blue);
   position: relative;
   transition: transform 250ms ease;
 }
 
-.nav__login__btn:hover {
+.nav__login__btn:hover, .nav__login__btn:focus {
   transform: scale(1.02);
 }
 
@@ -103,6 +109,32 @@ body {
   margin: 0 auto;
   height: 0.4vh;
   background: rgb(var(--primary-200));
+}
+
+.nav__logout__btn {
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  width: 80%;
+  padding: 5%;
+  font-family: Roboto;
+  font-size: 1.75vh;
+  border-radius: 100vw;
+  outline: 0.25vh solid red;
+  position: relative;
+  transition: background 125ms linear;
+}
+
+.nav__logout__btn:hover {
+  background: red;
+}
+
+.nav__logout__bar {
+  width: 80%;
+  margin: 0 auto;
+  height: 0.3vh;
+  background: red;
 }
 
 .nav__main {
@@ -121,27 +153,24 @@ body {
   width: 100%;
   aspect-ratio: 4 / 1;
   border-radius: 0.5vh;
-  outline: 3px solid rgb(var(--primary-200));
-  color: rgb(var(--primary-200));
+  outline: 0.5vh solid rgb(var(--primary-200));
+  color: white;
   font-family: cursive;
   font-size: 2.5vh;
+  box-shadow: 0 0 1vh 1vh rgb(var(--primary-200), 0.5);
+  transition: background 125ms linear;
 }
 
 .nav-btn:hover {
   background: rgb(var(--primary-200));
-  outline: none;
-  padding: 3px;
-  color: white;
 }
 
 .container {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .form {
+  margin: auto;
   width: 45%;
   height: 50%;
   background: rgb(var(--dark-600));

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/snippet.css') }}">
+<title>SnippetSandbox - New Snippet</title>
+{% endblock %}
+
+{% block body %}
+<div class="utils-bar">
+    <div class="save-btn">Save</div>
+</div>
+<div class="main">
+    <div class="sec html">
+        <div class="language-heading">HTML</div>
+        <div class="code">{{ html }}feafew</div>
+    </div>
+    <div class="sec css">
+        <div class="language-heading">CSS</div>
+        <div class="code">{{ css }}</div>
+    </div>
+    <div class="sec js">
+        <div class="language-heading">JS</div>
+        <div class="code">{{ js }}</div>
+    </div>
+    <div class="sec website">
+        <iframe id="snippet-iframe" style="border: 1px solid gray" width="100%" height="100%"></iframe>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/snippet.js')}}"></script>
+
+{% endblock %}
