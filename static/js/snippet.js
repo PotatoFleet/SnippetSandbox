@@ -16,6 +16,26 @@ let selectedHtmlLine = 1;
 let selectedCssLine = 1;
 let selectedJsLine = 1;
 
+let htmlLines = {
+  1: "",
+};
+
+let cssLines = {
+  1: "",
+};
+
+let jsLines = {
+  1: "",
+};
+
+function cursor_position() {
+  var sel = document.getSelection();
+  sel.modify("extend", "backward", "paragraphboundary");
+  var pos = sel.toString().length;
+  if (sel.anchorNode != undefined) sel.collapseToEnd();
+  return pos;
+}
+
 function writeToDocument(html, css, js) {
   html = `<html>
             <head>
@@ -47,7 +67,10 @@ htmlCode.addEventListener("keydown", (e) => {
     htmlSection.querySelector(".numbering").appendChild(number);
     selectedHtmlLine++;
   } else if (e.keyCode === 8) {
-    // backspace
+    if (htmlLines[selectedHtmlLine] == "") {
+      selectedHtmlLine--;
+      delete htmlLines[selectedHtmlLine];
+    }
   }
 });
 
@@ -58,6 +81,17 @@ cssCode.addEventListener("keydown", (e) => {
       parseInt(cssSection.querySelector(".numbering").lastChild.innerHTML) + 1;
     cssSection.querySelector(".numbering").appendChild(number);
     selectedCssLine++;
+    console.log(selectedCssLine);
+  } else if (e.keyCode === 8) {
+    if (cssLines[selectedCssLine] == "") {
+      selectedCssLine--;
+      delete htmlLines[selectedCssLine];
+    }
+  } else {
+    let lineText = cssCode.innerHTML;
+    // cssLines[selectedCssLine] += lineText[cursorPosition - 1];
+    console.log(cursor_position());
+    console.log(cssLines);
   }
 });
 
@@ -68,6 +102,11 @@ jsCode.addEventListener("keydown", (e) => {
       parseInt(jsSection.querySelector(".numbering").lastChild.innerHTML) + 1;
     jsSection.querySelector(".numbering").appendChild(number);
     selectedJsLine++;
+  } else if (e.keyCode === 8) {
+    if (jsLines[selectedJsLine] == "") {
+      selectedJsLine--;
+      delete htmlLines[selectedJsLine];
+    }
   }
 });
 
