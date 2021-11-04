@@ -58,13 +58,17 @@
   padding-right: 5px;
   display: flex;
   flex-direction: column;
+  line-height: 1.5;
+
   border-right: 1px solid gray;
 }
 
 .code {
   width: 100%;
+  height: max-content;
   padding: 0 5px;
   cursor: text;
+  line-height: 1.5;
   color: white;
   counter-reset: line;
 }

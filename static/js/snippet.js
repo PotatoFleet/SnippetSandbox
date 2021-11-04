@@ -58,55 +58,77 @@ saveButton.addEventListener("click", () => {
   writeToDocument(html, css, js);
 });
 
-htmlCode.addEventListener("keydown", (e) => {
-  if (e.keyCode === 13) {
-    // enter
-    let number = document.createElement("span");
-    number.innerHTML =
-      parseInt(htmlSection.querySelector(".numbering").lastChild.innerHTML) + 1;
-    htmlSection.querySelector(".numbering").appendChild(number);
-    selectedHtmlLine++;
-  } else if (e.keyCode === 8) {
-    if (htmlLines[selectedHtmlLine] == "") {
-      selectedHtmlLine--;
-      delete htmlLines[selectedHtmlLine];
+for (const code of codes) {
+  code.addEventListener("keydown", e => {
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      
     }
-  }
+  });
+}
+
+htmlCode.addEventListener("keydown", e => {
+  setTimeout(function () {
+    let line =
+      htmlCode.offsetHeight /
+      parseInt(
+        window.getComputedStyle(htmlCode).getPropertyValue("line-height")
+      );
+
+    let htmlNumbering = htmlSection.querySelector(".numbering");
+
+    htmlNumbering.innerHTML = "";
+
+    for (let i = 1; i <= line; i++) {
+      let span = document.createElement("span");
+      span.textContent = i;
+      htmlNumbering.appendChild(span);
+    }
+  }, 20);
 });
 
-cssCode.addEventListener("keydown", (e) => {
-  if (e.keyCode === 13) {
-    let number = document.createElement("span");
-    number.innerHTML =
-      parseInt(cssSection.querySelector(".numbering").lastChild.innerHTML) + 1;
-    cssSection.querySelector(".numbering").appendChild(number);
-    selectedCssLine++;
-    console.log(selectedCssLine);
-  } else if (e.keyCode === 8) {
-    if (cssLines[selectedCssLine] == "") {
-      selectedCssLine--;
-      delete htmlLines[selectedCssLine];
+cssCode.addEventListener("keydown", e => {
+  setTimeout(function () {
+    let line =
+      cssCode.offsetHeight /
+      parseInt(
+        window.getComputedStyle(cssCode).getPropertyValue("line-height")
+      );
+
+    let cssNumbering = cssSection.querySelector(".numbering");
+
+    cssNumbering.innerHTML = "";
+
+    for (let i = 1; i <= line; i++) {
+      let span = document.createElement("span");
+      span.textContent = i;
+      cssNumbering.appendChild(span);
     }
-  } else {
-    let lineText = cssCode.innerHTML;
-    // cssLines[selectedCssLine] += lineText[cursorPosition - 1];
-    console.log(cursor_position());
-    console.log(cssLines);
-  }
+  }, 20);
 });
 
-jsCode.addEventListener("keydown", (e) => {
-  if (e.keyCode === 13) {
-    let number = document.createElement("span");
-    number.innerHTML =
-      parseInt(jsSection.querySelector(".numbering").lastChild.innerHTML) + 1;
-    jsSection.querySelector(".numbering").appendChild(number);
-    selectedJsLine++;
-  } else if (e.keyCode === 8) {
-    if (jsLines[selectedJsLine] == "") {
-      selectedJsLine--;
-      delete htmlLines[selectedJsLine];
+jsCode.addEventListener("keydown", e => {
+  setTimeout(function () {
+    let line =
+      jsCode.offsetHeight /
+      parseInt(window.getComputedStyle(jsCode).getPropertyValue("line-height"));
+
+    let jsNumbering = jsSection.querySelector(".numbering");
+
+    jsNumbering.innerHTML = "";
+
+    for (let i = 1; i <= line; i++) {
+      let span = document.createElement("span");
+      span.textContent = i;
+      jsNumbering.appendChild(span);
     }
+  }, 20);
+});
+
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.keyCode === 83) {
+    e.preventDefault();
+    saveButton.click();
   }
 });
 
