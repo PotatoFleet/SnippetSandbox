@@ -1,41 +1,73 @@
-
 .container {
-    display: grid;
-    grid-template-rows: 1fr 8fr;
+  display: grid;
+  grid-template-rows: 1fr 8fr;
 }
 
 .utils-bar {
-    display: grid;
-    place-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+.snippet-name {
+  color: white;
+  font-family: sans-serif;
+  font-size: 1.5rem;
 }
 
 .main {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75em;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75em;
 }
 
 .sec:not(.website) {
-    border: 1px solid gray;
-    display: flex;
-    flex-direction: column;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
 }
 
 .language-heading {
-    padding: 10px 5px;
-    font-family: Roboto, sans-serif;
-    color: white;
-    background: rgb(var(--primary-200));
+  padding: 10px 5px;
+  font-family: Roboto, sans-serif;
+  color: white;
+  background: rgb(var(--primary-200));
 }
 
 .save-btn {
-    cursor: pointer;
-    width: max-content;
-    padding: .75vh 3vh;
-    font-family: Roboto, sans-serif;
-    font-size: 2.5vh;
-    color: white;
-    border-radius: 100vw;
-    background: linear-gradient(to right, red, blue);
+  cursor: pointer;
+  width: max-content;
+  padding: 0.75vh 3vh;
+  font-family: Roboto, sans-serif;
+  font-size: 2.5vh;
+  color: white;
+  border-radius: 100vw;
+  background: linear-gradient(to right, red, blue);
+}
+
+.codebox {
+  padding: 5px;
+  display: flex;
+  color: white;
+  font-family: Consolas;
+}
+
+.numbering {
+  padding-left: 2px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid gray;
+}
+
+.code {
+  width: 100%;
+  padding-left: 5px;
+  cursor: text;
+  color: white;
+}
+
+.code:focus {
+  outline: none;
 }

@@ -7,20 +7,36 @@
 
 {% block body %}
 <div class="utils-bar">
+    <div class="snippet-name">New Snippet</div>
     <div class="save-btn">Save</div>
 </div>
 <div class="main">
     <div class="sec html">
         <div class="language-heading">HTML</div>
-        <div class="code">{{ html }}feafew</div>
+        <div class="codebox">
+            <div class="numbering"><span>1</span></div>
+            <div class="code" contenteditable="true" tabindex="0">
+                {{ html }}
+            </div>
+        </div>
     </div>
     <div class="sec css">
         <div class="language-heading">CSS</div>
-        <div class="code">{{ css }}</div>
+        <div class="codebox">
+            <div class="numbering"><span>1</span></div>
+            <div class="code" contenteditable="true" tabindex="0">
+                {{ css }}
+            </div>
+        </div>    
     </div>
     <div class="sec js">
         <div class="language-heading">JS</div>
-        <div class="code">{{ js }}</div>
+        <div class="codebox">
+            <div class="numbering"><span>1</span></div>
+            <div class="code" contenteditable="true" tabindex="0">
+                {{ js }}
+            </div>
+        </div>    
     </div>
     <div class="sec website">
         <iframe id="snippet-iframe" style="border: 1px solid gray" width="100%" height="100%"></iframe>
