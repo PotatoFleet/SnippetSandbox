@@ -52,22 +52,57 @@ function writeToDocument(html, css, js) {
 }
 
 saveButton.addEventListener("click", () => {
-  html = htmlCode.textContent;
-  css = cssCode.textContent.replaceAll(/\s/g, "");
+  html = htmlCode.textContent.replaceAll("  ", "");
+  css = cssCode.textContent.replaceAll("  ", "");
   js = jsCode.textContent;
   writeToDocument(html, css, js);
 });
 
 for (const code of codes) {
-  code.addEventListener("keydown", e => {
+  code.addEventListener("keydown", (e) => {
     if (e.keyCode === 9) {
       e.preventDefault();
-      
+
+      var editor = code;
+      var doc = editor.ownerDocument.defaultView;
+      var sel = doc.getSelection();
+      var range = sel.getRangeAt(0);
+
+      var tabNode = document.createTextNode("\u00a0\u00a0");
+      range.insertNode(tabNode);
+
+      range.setStartAfter(tabNode);
+      range.setEndAfter(tabNode);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    if (e.keyCode === 13) {
+      var editor = code;
+      var doc = editor.ownerDocument.defaultView;
+      var sel = doc.getSelection();
+      var range = sel.getRangeAt(0);
+
+      var lastLetter = range.endContainer.textContent
+        .replaceAll(/\s/g, "")
+        .slice(-1);
+
+      if (lastLetter === "{" || lastLetter === ">") {
+        setTimeout(function () {
+          sel = doc.getSelection();
+          range = sel.getRangeAt(0);
+          var tabNode = document.createTextNode("\u00a0\u00a0");
+          range.insertNode(tabNode);
+          range.setStartAfter(tabNode);
+          range.setEndAfter(tabNode);
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }, 20);
+      }
     }
   });
 }
 
-htmlCode.addEventListener("keydown", e => {
+htmlCode.addEventListener("keydown", (e) => {
   setTimeout(function () {
     let line =
       htmlCode.offsetHeight /
@@ -87,7 +122,7 @@ htmlCode.addEventListener("keydown", e => {
   }, 20);
 });
 
-cssCode.addEventListener("keydown", e => {
+cssCode.addEventListener("keydown", (e) => {
   setTimeout(function () {
     let line =
       cssCode.offsetHeight /
@@ -107,7 +142,7 @@ cssCode.addEventListener("keydown", e => {
   }, 20);
 });
 
-jsCode.addEventListener("keydown", e => {
+jsCode.addEventListener("keydown", (e) => {
   setTimeout(function () {
     let line =
       jsCode.offsetHeight /
@@ -125,7 +160,7 @@ jsCode.addEventListener("keydown", e => {
   }, 20);
 });
 
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && e.keyCode === 83) {
     e.preventDefault();
     saveButton.click();
