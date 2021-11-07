@@ -12,7 +12,7 @@
 </div>
 <div class="main">
     <div class="sec html">
-        <div class="language-heading">HTML</div>
+        <div class="language-heading"><img class="language-logo" src="{{ url_for('static', filename='img/html.png')}}" height="20px"><div class="language-name">HTML</div></div>
         <div class="codebox">
             <div class="numbering"><span>1</span></div>
             <div class="code" contenteditable="true" spellcheck="false" tabindex="0">
@@ -21,19 +21,19 @@
         </div>
     </div>
     <div class="sec css">
-        <div class="language-heading">CSS</div>
+        <div class="language-heading"><img class="language-logo" src="{{ url_for('static', filename='img/css.png')}}" height="21px"><div class="language-name">CSS</div></div>
         <div class="codebox">
             <div class="numbering"><span>1</span></div>
-            <div class="code" contenteditable="true" tabindex="0">
+            <div class="code" contenteditable="true" spellcheck="false" tabindex="0">
                 {{ css }}
             </div>
         </div>    
     </div>
     <div class="sec js">
-        <div class="language-heading">JS</div>
+        <div class="language-heading"><img class="language-logo" src="{{ url_for('static', filename='img/js.png')}}" height="19px"><div class="language-name">JS</div></div>
         <div class="codebox">
             <div class="numbering"><span>1</span></div>
-            <div class="code" contenteditable="true" tabindex="0">
+            <div class="code" contenteditable="true" spellcheck="false" tabindex="0">
                 {{ js }}
             </div>
         </div>    

@@ -8,6 +8,8 @@ const cssCode = cssSection.querySelector(".code");
 const jsSection = document.querySelector(".js");
 const jsCode = jsSection.querySelector(".code");
 
+const spaces = "\u00a0\u00a0";
+
 let html = htmlCode.innerHTML;
 let css = cssCode.innerHTML;
 let js = jsCode.innerHTML;
@@ -68,7 +70,7 @@ for (const code of codes) {
       var sel = doc.getSelection();
       var range = sel.getRangeAt(0);
 
-      var tabNode = document.createTextNode("\u00a0\u00a0");
+      var tabNode = document.createTextNode(spaces);
       range.insertNode(tabNode);
 
       range.setStartAfter(tabNode);
@@ -90,14 +92,36 @@ for (const code of codes) {
         setTimeout(function () {
           sel = doc.getSelection();
           range = sel.getRangeAt(0);
-          var tabNode = document.createTextNode("\u00a0\u00a0");
+          var tabNode = document.createTextNode(spaces);
           range.insertNode(tabNode);
           range.setStartAfter(tabNode);
           range.setEndAfter(tabNode);
           sel.removeAllRanges();
           sel.addRange(range);
+
+          var evt = new CustomEvent("keyup");
+          evt.which = 13;
+          evt.keyCode = 13;
+          code.dispatchEvent(evt);
+
         }, 20);
       }
+    }
+    if (e.keyCode === 222) {
+      var editor = code;
+      var doc = editor.ownerDocument.defaultView;
+      var sel = doc.getSelection();
+      var range = sel.getRangeAt(0);
+      var endQuotation = document.createTextNode("\'");
+      if (e.shiftKey) {
+        endQuotation = document.createTextNode("\"");
+      }
+      console.log(range);
+      range.insertNode(endQuotation);
+      range.setStartAfter(endQuotation);
+      range.setEndAfter(endQuotation);
+      sel.removeAllRanges();
+      sel.addRange(range);
     }
   });
 }

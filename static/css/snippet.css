@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .container {
   display: grid;
   grid-template-rows: 1fr 8fr;
@@ -17,33 +21,51 @@
 
 .main {
   display: grid;
-  grid-template-rows: repeat(2, minmax(auto, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   grid-template-columns: 1fr 1fr;
-  gap: 0.75em;
+  gap: 0.5em;
+  padding: 0.5em;
+  max-height: 89vh;
+  overflow: hidden;
+}
+
+.main > * {
 }
 
 .sec:not(.website) {
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .language-heading {
-  padding: 10px 5px;
   font-family: Roboto, sans-serif;
   color: white;
   background: rgb(var(--primary-200));
+  display: flex;
+  padding: 10px 5px;
+  gap: 0.5em;
+}
+
+.language-logo {
+  margin: auto 0;
 }
 
 .save-btn {
   cursor: pointer;
   width: max-content;
-  padding: 0.75vh 3vh;
+  padding: 0.75vh 5vh;
   font-family: Roboto, sans-serif;
   font-size: 2.5vh;
   color: white;
   border-radius: 100vw;
   background: linear-gradient(to right, red, blue);
+  transition: padding 125ms ease-out;
+}
+.save-btn:hover {
+  padding: 0.9vh 5.3vh;
+  cursor: pointer;
 }
 
 .codebox {
@@ -51,6 +73,8 @@
   display: flex;
   color: white;
   font-family: Consolas;
+  max-height: 100%;
+  overflow: auto;
 }
 
 .numbering {
@@ -60,6 +84,7 @@
   flex-direction: column;
   line-height: 1.5;
   border-right: 1px solid gray;
+  height: max-content;
 }
 
 .code {
@@ -69,7 +94,6 @@
   cursor: text;
   line-height: 1.5;
   color: white;
-  overflow: auto;
 }
 
 .code:focus {
