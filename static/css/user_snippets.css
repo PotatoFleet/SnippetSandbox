@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  grid-template-rows: 2fr 8fr;
+}
+
+.snippets {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 5px 0;
+}
+
+.snippet {
+  cursor: pointer;
+  margin: 0;
+  padding: 1%;
+  border-radius: 1vh;
+  width: 20vw;
+  aspect-ratio: 6 / 7;
+  background: rgb(var(--dark-600), 0.7);
+  display: grid;
+  grid-template-rows: 7fr 1fr;
+  transition: transform 125ms linear;
+}
+.snippet:hover {
+  transform: scale(1.02);
+}
+
+.snippet__thumbnail {
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.snippet__name {
+  color: white;
+  font-family: Roboto;
+  display: flex;
+  align-items: flex-end;
+  font-size: 2.75vh;
+  font-weight: bold;
+}

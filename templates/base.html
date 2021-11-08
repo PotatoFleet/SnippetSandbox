@@ -18,20 +18,24 @@
         </div>
         <div class="nav__main">
             <div class="nav__main__bar"></div>
-            <div class="nav__main__new-btn nav-btn" tabindex="1" onclick="window.location.href='/new-snippet'">New Snippet</div>
+            <div class="nav__main__new-btn nav-btn" tabindex="0" onclick="window.location.href='/new-snippet'">New Snippet</div>
+            {% if session.user %}
+                <div class="nav__main__user-snippets-btn nav-btn" tabindex="0" onclick="window.location.href='/{{ session.user }}/snippets'">Your Snippets</div>
+            {% endif %}
         </div>
         {% if session.user %}
             <div class="nav__logout">
                 <div class="nav__logout__bar"></div>
-                <div class="nav__logout__btn" onclick="window.location.href='/logout'" tabindex="1">Logout</div>
+                <div class="nav__logout__btn" onclick="window.location.href='/logout'" tabindex="0">Logout</div>
             </div>
         {% else %}
             <div class="nav__login">
                 <div class="nav__login__bar"></div>
-                <div class="nav__login__btn" onclick="window.location.href='/login'" tabindex="1">Login</div>
+                <div class="nav__login__btn" onclick="window.location.href='/login'" tabindex="0">Login</div>
             </div>
         {% endif %}
     </div>
+    <div class="fake-nav"></div>
     <div class="container">
         {% block body %}
         {% endblock %}

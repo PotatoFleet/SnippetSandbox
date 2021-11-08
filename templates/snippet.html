@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/snippet.css') }}">
 <title>SnippetSandbox - New Snippet</title>
 {% endblock %}
 
 {% block body %}
+<input type="hidden" id="snippet-id" value="{{ snippet.id }}">
 <div class="utils-bar">
     <div class="snippet-name">New Snippet</div>
     <div class="save-btn">Save</div>
@@ -16,7 +18,7 @@
         <div class="codebox">
             <div class="numbering"><span>1</span></div>
             <div class="code" contenteditable="true" spellcheck="false" tabindex="0">
-                {{ html }}
+                {{ snippet.html }}
             </div>
         </div>
     </div>
@@ -25,7 +27,7 @@
         <div class="codebox">
             <div class="numbering"><span>1</span></div>
             <div class="code" contenteditable="true" spellcheck="false" tabindex="0">
-                {{ css }}
+                {{ snippet.css }}
             </div>
         </div>    
     </div>
@@ -34,7 +36,7 @@
         <div class="codebox">
             <div class="numbering"><span>1</span></div>
             <div class="code" contenteditable="true" spellcheck="false" tabindex="0">
-                {{ js }}
+                {{ snippet.js }}
             </div>
         </div>    
     </div>

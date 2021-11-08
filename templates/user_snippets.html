@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_snippets.css') }}">
+<title>SnippetSandbox - {{ session.user }}'s Snippets</title>
+{% endblock %}
+
+{% block body %}
+<div class="utils-bar">
+</div>
+<div class="snippets">
+    {% for snippet in snippets %}
+        <div class="snippet" onclick="window.location.href = '/snippet/{{ snippet.id }}'">
+            <iframe class="snippet__thumbnail" src="data:text/html, <html>
+                <head>
+                  <meta charset='UTF-8' />
+                  <title>Snippet</title>
+                  <style>body{background:white;}{{ snippet.css }}</style>
+                </head>
+                <body>
+                  {{ snippet.html }}
+                </body>
+                <script>{{ snippet.js }}</script
+              </html>"></iframe>
+            <div class="snippet__name">{{ snippet.name }}</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

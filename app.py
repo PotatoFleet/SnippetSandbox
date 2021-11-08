@@ -106,18 +106,43 @@ def new_snippet():
         flash("You must be logged in to create a new snippet.")
         return redirect(url_for('home'))
 
-    snippet = Snippet(name="New Snippet", author_id=User.query.filter_by(username=session['user']).first().id)
+    snippet = Snippet(name="New Snippet", author_id=User.query.filter_by(
+        username=session['user']).first().id)
 
     db.session.add(snippet)
     db.session.commit()
-    
+
     return redirect(url_for('snippet', snippet_id=snippet.id))
 
 
 @app.route('/snippet/<snippet_id>')
 def snippet(snippet_id):
     snippet = Snippet.query.filter_by(id=snippet_id).first()
-    return render_template('snippet.html', html=snippet.html, css=snippet.css, js=snippet.js)
+    return render_template('snippet.html', snippet=snippet)
+
+
+@app.route('/<username>/snippets')
+def user_snippets(username):
+    return render_template('user_snippets.html', snippets=Snippet.query.filter_by(author_id=User.query.filter_by(username=session['user']).first().id).all())
+
+
+@app.route('/save-snippet/<snippet_id>', methods=['POST'])
+def method_name(snippet_id):
+    if request.method != "POST":
+        flash("You are not allowed to go to this url")
+        return redirect(url_for('home'))
+
+    html = request.form['html']
+    css = request.form['css']
+    js = request.form['js']
+
+    snippet = Snippet.query.filter_by(id=snippet_id).first()
+
+    snippet.html = html
+    snippet.css = css
+    snippet.js = js
+
+    db.session.commit()
 
 
 if __name__ == '__main__':

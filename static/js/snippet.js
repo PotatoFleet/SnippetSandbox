@@ -1,4 +1,5 @@
 const iFrame = document.getElementById("snippet-iframe");
+const snippetId = document.getElementById("snippet-id").value;
 const saveButton = document.querySelector(".save-btn");
 const codes = document.querySelectorAll(".code");
 const htmlSection = document.querySelector(".html");
@@ -58,11 +59,46 @@ saveButton.addEventListener("click", () => {
   css = cssCode.textContent.replaceAll("  ", "");
   js = jsCode.textContent;
   writeToDocument(html, css, js);
+
+  data = new FormData();
+
+  data.append("html", html);
+  data.append("css", cssCode.innerHTML);
+  data.append("js", js);
+
+  $.ajax({
+    url: new URL(
+      `/save-snippet/${snippetId}`,
+      window.location.origin
+    ).toString(),
+    processData: false,
+    contentType: false,
+    type: "POST",
+    data: data,
+  });
 });
+
+function moveCaret(win, charCount) {
+  var sel, range;
+  if (win.getSelection) {
+    sel = win.getSelection();
+    if (sel.rangeCount > 0) {
+      var textNode = sel.focusNode;
+      var newOffset = sel.focusOffset + charCount;
+      sel.collapse(textNode, Math.min(textNode.length, newOffset));
+    }
+  } else if ((sel = win.document.selection)) {
+    if (sel.type != "Control") {
+      range = sel.createRange();
+      range.move("character", charCount);
+      range.select();
+    }
+  }
+}
 
 for (const code of codes) {
   code.addEventListener("keydown", (e) => {
-    if (e.keyCode === 9) {
+    if (e.keyCode === 9 && !e.shiftKey) {
       e.preventDefault();
 
       var editor = code;
@@ -98,12 +134,6 @@ for (const code of codes) {
           range.setEndAfter(tabNode);
           sel.removeAllRanges();
           sel.addRange(range);
-
-          var evt = new CustomEvent("keyup");
-          evt.which = 13;
-          evt.keyCode = 13;
-          code.dispatchEvent(evt);
-
         }, 20);
       }
     }
@@ -112,11 +142,10 @@ for (const code of codes) {
       var doc = editor.ownerDocument.defaultView;
       var sel = doc.getSelection();
       var range = sel.getRangeAt(0);
-      var endQuotation = document.createTextNode("\'");
+      var endQuotation = document.createTextNode("'");
       if (e.shiftKey) {
-        endQuotation = document.createTextNode("\"");
+        endQuotation = document.createTextNode('"');
       }
-      console.log(range);
       range.insertNode(endQuotation);
       range.setStartAfter(endQuotation);
       range.setEndAfter(endQuotation);
@@ -191,4 +220,4 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-writeToDocument(html, css, js);
+saveButton.click();
