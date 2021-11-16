@@ -62,9 +62,9 @@ saveButton.addEventListener("click", () => {
 
   data = new FormData();
 
-  data.append("html", html);
-  data.append("css", cssCode.innerHTML);
-  data.append("js", js);
+  data.append("html", htmlCode.textContent);
+  data.append("css", cssCode.textContent);
+  data.append("js", jsCode.textContent);
 
   $.ajax({
     url: new URL(
